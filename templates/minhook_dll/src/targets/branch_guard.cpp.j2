@@ -1,0 +1,18 @@
+// Template: branch_guard.cpp
+// Parameters:
+// - target_symbol
+// - target_addr
+// - branch_condition
+//
+// Placeholder only. No real patching logic is included.
+
+static const char* kTargetSymbol = "{{ target_symbol | default("unknown_target") }}";
+static const char* kTargetAddr = "{{ target_addr | default("0x0") }}";
+static const char* kBranchCondition = "{{ branch_condition | default("unknown") }}";
+
+void install_branch_guard_stub() {
+    // TODO:
+    // - observe branch input values
+    // - log condition outcomes
+    // - keep the prototype reversible
+}

@@ -1,0 +1,18 @@
+// Template: return_override.cpp
+// Parameters:
+// - target_symbol
+// - target_addr
+// - override_value
+//
+// Placeholder only. No working override logic is included here.
+
+static const char* kTargetSymbol = "{{ target_symbol | default("unknown_target") }}";
+static const char* kTargetAddr = "{{ target_addr | default("0x0") }}";
+static const int kOverrideValue = {{ override_value | default(0) }};
+
+void install_return_override_stub() {
+    // TODO:
+    // - define the target signature
+    // - place a reversible hook
+    // - log when the override is activated
+}

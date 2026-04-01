@@ -1,0 +1,20 @@
+// Template: logging_hook.cpp
+// Parameters:
+// - target_symbol
+// - target_addr
+// - log_message
+//
+// This is intentionally a placeholder. Fill in the real calling convention,
+// target signature and reversible instrumentation logic in your own environment.
+
+#include <string>
+
+static const char* kTargetSymbol = "{{ target_symbol | default("unknown_target") }}";
+static const char* kTargetAddr = "{{ target_addr | default("0x0") }}";
+
+void install_logging_hook_stub() {
+    // TODO:
+    // - resolve the target address
+    // - install a logging-only hook
+    // - write minimal structured output
+}

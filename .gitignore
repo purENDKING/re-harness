@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+data/
+dist/
+build/
+*.egg-info/
+.coverage
+htmlcov/
+generated/
+
+.conda/
+.idea/
+# PowerShell / local helper artifacts
+*.tmp

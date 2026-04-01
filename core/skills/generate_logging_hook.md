@@ -1,0 +1,1 @@
+# generate_logging_hook\n\nCreate a minimal logging-oriented hook stub that records parameters and return values.\n

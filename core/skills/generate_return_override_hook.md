@@ -1,0 +1,1 @@
+# generate_return_override_hook\n\nGenerate a reversible stub for testing alternate return values.\n
