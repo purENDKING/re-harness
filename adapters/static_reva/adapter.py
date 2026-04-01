@@ -14,6 +14,65 @@ class StaticAnalyzer(Protocol):
     """
 
     # ========================================
+    # 发现 / 目录能力
+    # ========================================
+
+    def get_function_count(self, *, filter_default_names: bool = True) -> int:
+        """
+        获取函数总数。
+        """
+
+    def list_functions(
+            self,
+            *,
+            start_index: int = 0,
+            max_count: int = 100,
+            filter_default_names: bool = True,
+            verbose: bool = False,
+    ) -> list[dict]:
+        """
+        分页列出函数目录。
+        Returns:
+            [
+              {
+                "name": str,
+                "address": str,
+                "size_in_bytes": int | None,
+                "tags": list[str],
+                "caller_count": int | None,
+                "callee_count": int | None,
+              }
+            ]
+        """
+
+    def find_functions_by_name(
+            self,
+            search: str,
+            *,
+            max_count: int = 50,
+            filter_default_names: bool = True,
+            verbose: bool = False,
+    ) -> list[dict]:
+        """
+        按函数名相似度搜索函数。
+        """
+
+    def list_structures(
+            self,
+            *,
+            name_filter: str | None = None,
+            max_count: int = 100,
+    ) -> list[dict]:
+        """
+        列出结构体目录。
+        """
+
+    def get_structure(self, name: str) -> dict:
+        """
+        获取结构体详情。
+        """
+
+    # ========================================
     # 上下文获取
     # ========================================
 
@@ -382,6 +441,7 @@ class ReVaStaticAdapter:
         from adapters.static_reva.mapper import map_current_program
 
         result = self._client.call_tool("get-current-program", {})
+        print(result)
         ctx = map_current_program(result)
 
         # 缓存 program_path

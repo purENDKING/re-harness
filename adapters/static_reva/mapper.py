@@ -20,13 +20,8 @@ from typing import Any
 
 
 def _extract_content(result: dict[str, Any]) -> str:
-    """从 MCP 工具响应中提取文本内容。"""
-    if not result.get("ok"):
-        return ""
-
     content = result.get("content", [])
     if isinstance(content, list) and content:
-        # MCP 返回的是文本块列表
         return "\n".join(str(c) for c in content)
     return ""
 
