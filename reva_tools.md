@@ -6,982 +6,978 @@
 
 ## 1. `get-symbols-count`
 
-**Get Symbols Count** (获取符号总数)
+**Get Symbols Count**（获取符号总数）
 
-Get the total count of symbols in the program (use this before calling get-symbols to plan pagination)
+获取程序中符号的总数量（在调用 get-symbols 之前使用以规划分页）
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `includeExternal` | `boolean` |  | `False` | Whether to include external symbols in the count |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program to get symbol count from |
-| `filterDefaultNames` | `boolean` |  | `True` | Whether to filter out default Ghidra generated names like FUN_, DAT_, etc. |
+| `includeExternal` | `boolean` |  | `False` | 是否在计数中包含外部符号 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `filterDefaultNames` | `boolean` |  | `True` | 是否过滤掉 Ghidra 生成的默认名称（如 FUN_、DAT_ 等） |
 
 ---
 
 ## 2. `get-symbols`
 
-**Get Symbols** (获取符号列表)
+**Get Symbols**（获取符号列表）
 
-Get symbols from the selected program with pagination (use get-symbols-count first to determine total count)
+分页获取程序中的符号（先用 get-symbols-count 确定总数）
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `includeExternal` | `boolean` |  | `False` | Whether to include external symbols in the result |
-| `startIndex` | `integer` |  | `0` | Starting index for pagination (0-based) |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program to get symbols from |
-| `filterDefaultNames` | `boolean` |  | `True` | Whether to filter out default Ghidra generated names like FUN_, DAT_, etc. |
-| `maxCount` | `integer` |  | `200` | Maximum number of symbols to return (recommend using get-symbols-count first and using chunks of 200 |
+| `includeExternal` | `boolean` |  | `False` | 是否在结果中包含外部符号 |
+| `startIndex` | `integer` |  | `0` | 分页起始索引（从 0 开始） |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `filterDefaultNames` | `boolean` |  | `True` | 是否过滤掉 Ghidra 生成的默认名称（如 FUN_、DAT_ 等） |
+| `maxCount` | `integer` |  | `200` | 返回的最大符号数（建议每次获取 200 个） |
 
 ---
 
 ## 3. `get-strings-count`
 
-**Get Strings Count** (获取字符串总数)
+**Get Strings Count**（获取字符串总数）
 
-Get the total count of strings in the program (use this before calling get-strings to plan pagination)
+获取程序中字符串的总数量（在调用 get-strings 之前使用以规划分页）
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program to get string count from |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
 
 ---
 
 ## 4. `get-strings`
 
-**Get Strings** (获取字符串列表)
+**Get Strings**（获取字符串列表）
 
-Get strings from the selected program with pagination. Optionally filter by regex (regexPattern) or sort by similarity (searchString). Use get-strings-count first to determine total count.
+分页获取程序中的字符串，可选通过正则表达式过滤或按相似度排序。先用 get-strings-count 确定总数。
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `searchString` | `string` |  | - | Optional: sort results by similarity to this string (scored by longest common substring). Mutually e |
-| `startIndex` | `integer` |  | `0` | Starting index for pagination (0-based) |
-| `includeReferencingFunctions` | `boolean` |  | `False` | Include list of functions that reference each string (max 100 per string). |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program to get strings from |
-| `regexPattern` | `string` |  | - | Optional: filter results to strings matching this regex pattern. Mutually exclusive with searchStrin |
-| `maxCount` | `integer` |  | `100` | Maximum number of strings to return (recommended to use get-strings-count first and request chunks o |
+| `searchString` | `string` |  | - | 按与此字符串的相似度排序结果（与 regexPattern 互斥） |
+| `startIndex` | `integer` |  | `0` | 分页起始索引（从 0 开始） |
+| `includeReferencingFunctions` | `boolean` |  | `False` | 包含引用每个字符串的函数列表（每个字符串最多 100 个） |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `regexPattern` | `string` |  | - | 过滤匹配此正则表达式的字符串（与 searchString 互斥） |
+| `maxCount` | `integer` |  | `100` | 返回的最大字符串数（建议每次最多 100 个） |
 
 ---
 
 ## 5. `get-function-count`
 
-**Get Function Count** (获取函数总数)
+**Get Function Count**（获取函数总数）
 
-Get the total count of functions in the program (use this before calling get-functions to plan pagination)
+获取程序中函数的总数量（在调用 get-functions 之前使用以规划分页）
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program to get functions from |
-| `filterDefaultNames` | `boolean` |  | `True` | Whether to filter out default Ghidra generated names like FUN_, DAT_, etc. |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `filterDefaultNames` | `boolean` |  | `True` | 是否过滤掉 Ghidra 生成的默认名称（如 FUN_、DAT_ 等） |
 
 ---
 
 ## 6. `get-functions`
 
-**Get Functions** (获取函数列表)
+**Get Functions**（获取函数列表）
 
-Get functions from the selected program (use get-function-count to determine the total count)
+获取程序中的函数列表（先用 get-function-count 确定总数）
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `startIndex` | `integer` |  | `0` | Starting index for pagination (0-based) |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program to get functions from |
-| `filterDefaultNames` | `boolean` |  | `True` | Whether to filter out default Ghidra generated names like FUN_, DAT_, etc. |
-| `untagged` | `boolean` |  | `False` | Only return functions with no tags (mutually exclusive with filterByTag) |
-| `filterByTag` | `string` |  | - | Only return functions with this tag (applied after filterDefaultNames) |
-| `maxCount` | `integer` |  | `100` | Maximum number of functions to return (recommended to use get-function-count first and request chunk |
-| `verbose` | `boolean` |  | `False` | Return full function details. When false (default), returns compact results (name, address, sizeInBy |
+| `startIndex` | `integer` |  | `0` | 分页起始索引（从 0 开始） |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `filterDefaultNames` | `boolean` |  | `True` | 是否过滤掉 Ghidra 生成的默认名称（如 FUN_、DAT_ 等） |
+| `untagged` | `boolean` |  | `False` | 仅返回没有标签的函数（与 filterByTag 互斥） |
+| `filterByTag` | `string` |  | - | 仅返回具有此标签的函数 |
+| `maxCount` | `integer` |  | `100` | 返回的最大函数数（建议每次最多 100 个） |
+| `verbose` | `boolean` |  | `False` | 返回完整函数详情。为 false 时返回紧凑结果（名称、地址、大小、标签等） |
 
 ---
 
 ## 7. `get-functions-by-similarity`
 
-**Get Functions by Similarity** (按相似度获取函数)
+**Get Functions by Similarity**（按相似度获取函数）
 
-Get functions from the selected program with pagination, sorted by similarity to a given function name (use get-function-count first to determine total count)
+分页获取程序中的函数，按与给定函数名的相似度排序（先用 get-function-count 确定总数）
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `searchString` | `string` | ✓ | - | Function name to compare against for similarity (scored by longest common substring length between t |
-| `startIndex` | `integer` |  | `0` | Starting index for pagination (0-based) |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program to get functions from |
-| `filterDefaultNames` | `boolean` |  | `True` | Whether to filter out default Ghidra generated names like FUN_, DAT_, etc. |
-| `maxCount` | `integer` |  | `100` | Maximum number of functions to return (recommended to use get-function-count first and request chunk |
-| `verbose` | `boolean` |  | `False` | Return full function details. When false (default), returns compact results (name, address, sizeInBy |
+| `searchString` | `string` | ✓ | - | 用于比较相似度的函数名 |
+| `startIndex` | `integer` |  | `0` | 分页起始索引（从 0 开始） |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `filterDefaultNames` | `boolean` |  | `True` | 是否过滤掉 Ghidra 生成的默认名称 |
+| `maxCount` | `integer` |  | `100` | 返回的最大函数数 |
+| `verbose` | `boolean` |  | `False` | 返回完整函数详情 |
 
 ---
 
 ## 8. `set-function-prototype`
 
-**Set Function Prototype** (设置函数原型)
+**Set Function Prototype**（设置函数原型）
 
-Set or update a function prototype using C-style function signatures. Can create new functions or update existing ones.
+使用 C 风格函数签名设置或更新函数原型。可以创建新函数或更新现有函数。
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `signature` | `string` | ✓ | - | C-style function signature (e.g., 'int main(int argc, char** argv)') |
-| `location` | `string` | ✓ | - | Address or symbol name where the function is located |
-| `createIfNotExists` | `boolean` |  | `True` | Create function if it doesn't exist at the location |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `signature` | `string` | ✓ | - | C 风格函数签名（如 'int main(int argc, char** argv)'） |
+| `location` | `string` | ✓ | - | 函数所在的地址或符号名 |
+| `createIfNotExists` | `boolean` |  | `True` | 如果位置不存在函数则创建 |
 
 ---
 
 ## 9. `get-undefined-function-candidates`
 
-**Get Undefined Function Candidates** (获取未定义函数候选)
+**Get Undefined Function Candidates**（获取未定义函数候选）
 
-Find addresses in executable memory with valid instructions that are referenced but not defined as functions. Includes both CALL references and DATA references (function pointers, callbacks, exception handlers). Use get-decompilation to preview candidates, then create-function to define them permanently.
+查找可执行内存中被引用但未定义为函数的有效指令地址。包括 CALL 引用和 DATA 引用（函数指针、回调、异常处理程序）。
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `startIndex` | `integer` |  | `0` | Starting index for pagination (0-based) |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `maxCandidates` | `integer` |  | `100` | Maximum number of candidates to return (default: 100) |
-| `minReferenceCount` | `integer` |  | `1` | Minimum number of references required to be a candidate (default: 1) |
+| `startIndex` | `integer` |  | `0` | 分页起始索引（从 0 开始） |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `maxCandidates` | `integer` |  | `100` | 返回的最大候选数 |
+| `minReferenceCount` | `integer` |  | `1` | 成为候选所需的最小引用数 |
 
 ---
 
 ## 10. `create-function`
 
-**Create Function** (创建函数)
+**Create Function**（创建函数）
 
-Create a function at an address with auto-detected signature. Ghidra will analyze the code to determine the function body, parameters, and return type. Use this after get-undefined-function-candidates to define discovered functions. For explicit signature control, use set-function-prototype instead.
+在指定地址创建函数，Ghidra 会自动分析代码确定函数体、参数和返回类型。
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `address` | `string` | ✓ | - | Address where the function should be created (e.g., '0x401000') |
-| `name` | `string` |  | - | Optional name for the function. If not provided, Ghidra will generate a default name (FUN_xxxxxxxx) |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `address` | `string` | ✓ | - | 创建函数的地址（如 '0x401000'） |
+| `name` | `string` |  | - | 可选的函数名。如未提供，Ghidra 将生成默认名称 |
 
 ---
 
 ## 11. `function-tags`
 
-**Function Tags** (函数标签管理)
+**Function Tags**（函数标签管理）
 
-Manage function tags. Tags categorize functions (e.g., 'AI', 'rendering'). Use mode='list' for all tags in program.
+管理函数标签，用于对函数进行分类（如 'AI'、'rendering'）。
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `mode` | `string` | ✓ | - | Operation: 'get' (tags on function), 'set' (replace), 'add', 'remove', 'list' (all tags in program) |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `function` | `string` |  | - | Function name or address (required for get/set/add/remove modes) |
-| `tags` | `array` |  | - | Tag names (required for add; optional for set/remove). Empty/whitespace names are ignored. |
+| `mode` | `string` | ✓ | - | 操作：'get'（获取）、'set'（替换）、'add'（添加）、'remove'（删除）、'list'（列出所有） |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `function` | `string` |  | - | 函数名或地址（get/set/add/remove 模式必需） |
+| `tags` | `array` |  | - | 标签名列表 |
 
 ---
 
 ## 12. `get-data`
 
-**Get Data** (获取数据)
+**Get Data**（获取数据）
 
-Get data at a specific address or symbol in a program
+获取程序中指定地址或符号的数据
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program containing the data |
-| `addressOrSymbol` | `string` | ✓ | - | Address or symbol name to get data from (e.g., '0x00400000' or 'main') |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `addressOrSymbol` | `string` | ✓ | - | 地址或符号名（如 '0x00400000' 或 'main'） |
 
 ---
 
 ## 13. `apply-data-type`
 
-**Apply Data Type** (应用数据类型)
+**Apply Data Type**（应用数据类型）
 
-Apply a data type to a specific address or symbol in a program
+将数据类型应用到程序中的指定地址或符号
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `dataTypeString` | `string` | ✓ | - | String representation of the data type (e.g., 'char**', 'int[10]') |
-| `archiveName` | `string` |  | `` | Optional name of the data type archive to search in. If not provided, all archives will be searched. |
-| `addressOrSymbol` | `string` | ✓ | - | Address or symbol name to apply the data type to (e.g., '0x00400000' or 'main') |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `dataTypeString` | `string` | ✓ | - | 数据类型的字符串表示（如 'char**'、'int[10]'） |
+| `archiveName` | `string` |  | - | 数据类型归档名称（可选，默认搜索所有归档） |
+| `addressOrSymbol` | `string` | ✓ | - | 地址或符号名 |
 
 ---
 
 ## 14. `create-label`
 
-**Create Label** (创建标签)
+**Create Label**（创建标签）
 
-Create a label at a specific address in a program
+在程序中的指定地址创建标签
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `setAsPrimary` | `boolean` |  | `True` | Whether to set this label as primary if other labels exist at the address |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program containing the address |
-| `addressOrSymbol` | `string` | ✓ | - | Address or symbol name to create label at (e.g., '0x00400000' or 'main') |
-| `labelName` | `string` | ✓ | - | Name for the label to create |
+| `setAsPrimary` | `boolean` |  | `True` | 如果地址存在其他标签，是否将此标签设置为主标签 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `addressOrSymbol` | `string` | ✓ | - | 地址或符号名 |
+| `labelName` | `string` | ✓ | - | 标签名称 |
 
 ---
 
 ## 15. `get-decompilation`
 
-**Get Function Decompilation** (获取函数反编译代码)
+**Get Function Decompilation**（获取函数反编译代码）
 
-Get decompiled code for a function with line range support. Defaults to 50 lines to conserve context - start with small chunks (10-20 lines) then expand as needed using offset/limit. Updating variable data types and names can significantly improve decompilation quality. Use includeCallers/includeCallees to get caller/callee lists in one call (avoids separate tool invocations).
+获取函数的反编译代码，支持行范围。默认 50 行以节省上下文。
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `functionNameOrAddress` | `string` | ✓ | - | Function name, address, or symbol to decompile (e.g. 'main', '0x00401000', or 'start'). For addresse |
-| `includeCallers` | `boolean` |  | `False` | Include list of functions that call this one (name, address, signature). Use for understanding funct |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program containing the function |
-| `offset` | `integer` |  | `1` | Line number to start reading from (1-based). Defaults to 1. |
-| `includeDisassembly` | `boolean` |  | `False` | Whether to include assembly listing alongside decompilation for sync |
-| `includeIncomingReferences` | `boolean` |  | `True` | Whether to include incoming cross references to this function on the function declaration line |
-| `limit` | `integer` |  | `50` | Number of lines to return. Defaults to 50 lines to conserve context. Use smaller chunks (10-20 lines |
-| `includeReferenceContext` | `boolean` |  | `True` | Whether to include code context snippets from calling functions (requires includeIncomingReferences) |
-| `includeComments` | `boolean` |  | `False` | Whether to include comments in the decompilation output |
-| `includeCallees` | `boolean` |  | `False` | Include list of functions this one calls (name, address, signature). Use for understanding function  |
-| `signatureOnly` | `boolean` |  | `False` | Return only signature/metadata without decompiled code. Saves output tokens. |
+| `functionNameOrAddress` | `string` | ✓ | - | 函数名、地址或符号 |
+| `includeCallers` | `boolean` |  | `False` | 包含调用此函数的函数列表 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `offset` | `integer` |  | `1` | 开始读取的行号（从 1 开始） |
+| `includeDisassembly` | `boolean` |  | `False` | 是否包含汇编列表 |
+| `includeIncomingReferences` | `boolean` |  | `True` | 是否包含传入交叉引用 |
+| `limit` | `integer` |  | `50` | 返回的行数 |
+| `includeReferenceContext` | `boolean` |  | `True` | 是否包含调用函数的代码上下文片段 |
+| `includeComments` | `boolean` |  | `False` | 是否包含注释 |
+| `includeCallees` | `boolean` |  | `False` | 包含此函数调用的函数列表 |
+| `signatureOnly` | `boolean` |  | `False` | 仅返回签名/元数据，不返回反编译代码 |
 
 ---
 
 ## 16. `search-decompilation`
 
-**Search Function Decompilations** (搜索反编译代码)
+**Search Function Decompilations**（搜索反编译代码）
 
-Search for patterns across all function decompilations in a program. Returns function names and line numbers where patterns match. If looking for calls or references to data, try the cross reference tools first.
+在程序中所有函数的反编译代码中搜索模式
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program to search |
-| `overrideMaxFunctionsLimit` | `boolean` |  | `False` | Whether to override the maximum function limit for decompiler searches. Use with caution as large pr |
-| `maxResults` | `integer` |  | `50` | Maximum number of search results to return |
-| `caseSensitive` | `boolean` |  | `False` | Whether the search should be case sensitive |
-| `pattern` | `string` | ✓ | - | Regular expression pattern to search for in decompiled functions |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `overrideMaxFunctionsLimit` | `boolean` |  | `False` | 是否覆盖最大函数限制（谨慎使用） |
+| `maxResults` | `integer` |  | `50` | 返回的最大搜索结果数 |
+| `caseSensitive` | `boolean` |  | `False` | 是否区分大小写 |
+| `pattern` | `string` | ✓ | - | 要搜索的正则表达式模式 |
 
 ---
 
 ## 17. `rename-variables`
 
-**Rename Function Variables** (重命名函数变量)
+**Rename Function Variables**（重命名函数变量）
 
-Rename variables in a decompiled function
+重命名反编译函数中的变量
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `functionNameOrAddress` | `string` | ✓ | - | Function name, address, or symbol to rename variables in (e.g. 'main', '0x00401000', or 'start'). Fo |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program containing the function |
-| `variableMappings` | `object` | ✓ | - | Mapping of old variable names to new variable names. Only rename the variables that need to be chang |
+| `functionNameOrAddress` | `string` | ✓ | - | 函数名、地址或符号 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `variableMappings` | `object` | ✓ | - | 旧变量名到新变量名的映射 |
 
 ---
 
 ## 18. `change-variable-datatypes`
 
-**Change Variable Data Types** (更改变量数据类型)
+**Change Variable Data Types**（更改变量数据类型）
 
-Change data types of variables in a decompiled function
+更改反编译函数中变量的数据类型
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `functionNameOrAddress` | `string` | ✓ | - | Function name, address, or symbol to change variable data types in (e.g. 'main', '0x00401000', or 's |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program containing the function |
-| `datatypeMappings` | `object` | ✓ | - | Mapping of variable names to new data type strings (e.g., 'char*', 'int[10]'). Only change the varia |
-| `archiveName` | `string` |  | `` | Optional name of the data type archive to search for data types. If not provided, all archives will  |
+| `functionNameOrAddress` | `string` | ✓ | - | 函数名、地址或符号 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `datatypeMappings` | `object` | ✓ | - | 变量名到新数据类型的映射 |
+| `archiveName` | `string` |  | - | 数据类型归档名称（可选） |
 
 ---
 
 ## 19. `set-decompilation-comment`
 
-**Add Decompilation Comment** (添加反编译注释)
+**Add Decompilation Comment**（添加反编译注释）
 
-Set a comment at a specific line in decompiled code. The comment will be placed at the address corresponding to the decompilation line.
+在反编译代码的指定行设置注释
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `functionNameOrAddress` | `string` | ✓ | - | Function name, address, or symbol (e.g. 'main', '0x00401000', or 'start') |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program containing the function |
-| `commentType` | `string` |  | `eol` | Type of comment: 'pre' or 'eol' (end-of-line) |
-| `comment` | `string` | ✓ | - | The comment text to set |
-| `lineNumber` | `integer` | ✓ | - | Line number in the decompiled function (1-based) |
+| `functionNameOrAddress` | `string` | ✓ | - | 函数名、地址或符号 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `commentType` | `string` |  | `eol` | 注释类型：'pre' 或 'eol'（行尾） |
+| `comment` | `string` | ✓ | - | 注释文本 |
+| `lineNumber` | `integer` | ✓ | - | 行号（从 1 开始） |
 
 ---
 
 ## 20. `get-callers-decompiled`
 
-**Get Callers Decompiled** (获取调用者反编译代码)
+**Get Callers Decompiled**（获取调用者反编译代码）
 
-Decompile all functions that call a target function. Returns bulk decompilation results with optional call site highlighting. Use for understanding how a function is used throughout the codebase.
+反编译所有调用目标函数的函数
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `functionNameOrAddress` | `string` | ✓ | - | Target function name or address to find callers for |
-| `startIndex` | `integer` |  | `0` | Starting index for pagination (0-based) |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `includeCallContext` | `boolean` |  | `True` | Whether to highlight the line containing the call in each decompilation |
-| `maxCallers` | `integer` |  | `10` | Maximum number of calling functions to decompile (default: 10) |
+| `functionNameOrAddress` | `string` | ✓ | - | 目标函数名或地址 |
+| `startIndex` | `integer` |  | `0` | 分页起始索引 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `includeCallContext` | `boolean` |  | `True` | 是否突出显示调用行 |
+| `maxCallers` | `integer` |  | `10` | 反编译的最大调用函数数 |
 
 ---
 
 ## 21. `get-referencers-decompiled`
 
-**Get Referencers Decompiled** (获取引用者反编译代码)
+**Get Referencers Decompiled**（获取引用者反编译代码）
 
-Decompile all functions that reference a specific address or symbol. Useful for understanding how global variables, data, or code locations are used. Includes both code and data references by default.
+反编译所有引用特定地址或符号的函数
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `startIndex` | `integer` |  | `0` | Starting index for pagination (0-based) |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `maxReferencers` | `integer` |  | `10` | Maximum number of referencing functions to decompile (default: 10) |
-| `addressOrSymbol` | `string` | ✓ | - | Target address or symbol name to find references to (e.g., '0x00401000', 'global_var', 'my_label') |
-| `includeRefContext` | `boolean` |  | `True` | Whether to include reference line numbers in decompilation |
-| `includeDataRefs` | `boolean` |  | `True` | Whether to include data references (reads/writes), not just calls |
+| `startIndex` | `integer` |  | `0` | 分页起始索引 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `maxReferencers` | `integer` |  | `10` | 反编译的最大引用函数数 |
+| `addressOrSymbol` | `string` | ✓ | - | 目标地址或符号名 |
+| `includeRefContext` | `boolean` |  | `True` | 是否包含引用行号 |
+| `includeDataRefs` | `boolean` |  | `True` | 是否包含数据引用（读/写） |
 
 ---
 
 ## 22. `get-memory-blocks`
 
-**Get Memory Blocks** (获取内存块)
+**Get Memory Blocks**（获取内存块）
 
-Get memory blocks from the selected program
+获取所选程序的内存块
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path to the program in the Ghidra Project |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
 
 ---
 
 ## 23. `read-memory`
 
-**Read Memory** (读取内存)
+**Read Memory**（读取内存）
 
-Read memory at a specific address
+读取指定地址的内存
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path to the program in the Ghidra Project |
-| `addressOrSymbol` | `string` | ✓ | - | Address or symbol name to read from (e.g. '00400000' or 'main') |
-| `length` | `integer` |  | `16` | Number of bytes to read |
-| `format` | `string` |  | `hex` | Output format: 'hex', 'bytes', or 'both' |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `addressOrSymbol` | `string` | ✓ | - | 地址或符号名 |
+| `length` | `integer` |  | `16` | 要读取的字节数 |
+| `format` | `string` |  | `hex` | 输出格式：'hex'、'bytes' 或 'both' |
 
 ---
 
 ## 24. `get-current-program`
 
-**Get Current Program** (获取当前程序)
+**Get Current Program**（获取当前程序）
 
-Get the currently active program in Ghidra
+获取 Ghidra 中当前活动的程序
 
+无参数
 
 ---
 
 ## 25. `list-open-programs`
 
-**List Open Programs** (列出打开的程序)
+**List Open Programs**（列出打开的程序）
 
-List all programs currently open in Ghidra across all tools
+列出 Ghidra 中所有打开的程序
 
+无参数
 
 ---
 
 ## 26. `list-project-files`
 
-**List Project Files** (列出项目文件)
+**List Project Files**（列出项目文件）
 
-List files and folders in the Ghidra project
+列出 Ghidra 项目中的文件和文件夹
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `folderPath` | `string` | ✓ | - | Path to the folder to list contents of. Use '/' for the root folder. |
-| `recursive` | `boolean` |  | `False` | Whether to list files recursively |
+| `folderPath` | `string` | ✓ | - | 文件夹路径（使用 '/' 表示根文件夹） |
+| `recursive` | `boolean` |  | `False` | 是否递归列出 |
 
 ---
 
 ## 27. `checkin-program`
 
-**Checkin Program** (提交程序到版本控制)
+**Checkin Program**（提交程序到版本控制）
 
-Checkin (commit) a program to version control with a commit message
+将程序提交到版本控制并附带提交消息
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path to the program to checkin (e.g., '/Hatchery.exe') |
-| `message` | `string` | ✓ | - | Commit message for the checkin |
-| `keepCheckedOut` | `boolean` |  | `False` | Whether to keep the program checked out after checkin |
+| `programPath` | `string` | ✓ | - | 程序路径（如 '/Hatchery.exe'） |
+| `message` | `string` | ✓ | - | 提交消息 |
+| `keepCheckedOut` | `boolean` |  | `False` | 提交后是否保持检出状态 |
 
 ---
 
 ## 28. `analyze-program`
 
-**Analyze Program** (分析程序)
+**Analyze Program**（分析程序）
 
-Run Ghidra's auto-analysis on a program
+对程序运行 Ghidra 的自动分析
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path to the program to analyze (e.g., '/Hatchery.exe') |
+| `programPath` | `string` | ✓ | - | 程序路径 |
 
 ---
 
 ## 29. `change-processor`
 
-**Change Processor** (更改处理器架构)
+**Change Processor**（更改处理器架构）
 
-Change the processor architecture of an existing program
+更改现有程序的处理器架构
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path to the program to modify (e.g., '/Hatchery.exe') |
-| `languageId` | `string` | ✓ | - | Language ID for the new processor (e.g., 'x86:LE:64:default') |
-| `compilerSpecId` | `string` |  | - | Compiler spec ID (optional, defaults to the language's default) |
+| `programPath` | `string` | ✓ | - | 程序路径 |
+| `languageId` | `string` | ✓ | - | 语言 ID（如 'x86:LE:64:default'） |
+| `compilerSpecId` | `string` |  | - | 编译器规范 ID（可选） |
 
 ---
 
 ## 30. `import-file`
 
-**Import File** (导入文件)
+**Import File**（导入文件）
 
-Import files, directories, or archives into the Ghidra project using batch import
+使用批量导入将文件、目录或归档导入 Ghidra 项目
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `destinationFolder` | `string` |  | - | Project folder path for imported files (default: root folder) |
-| `maxDepth` | `integer` |  | - | Maximum container depth to recurse into (default: 10) |
-| `stripLeadingPath` | `boolean` |  | - | Omit the source file's leading path from imported file locations (default: true) |
-| `path` | `string` | ✓ | - | Absolute file system path to import (file, directory, or archive). Use absolute paths to ensure prop |
-| `enableVersionControl` | `boolean` |  | - | Automatically add imported files to version control (default: true) |
-| `analyzeAfterImport` | `boolean` |  | - | Run auto-analysis after import (default: true) |
-| `stripAllContainerPath` | `boolean` |  | - | Completely flatten container paths in imported file locations (default: false) |
-| `mirrorFs` | `boolean` |  | - | Mirror the filesystem layout when importing (default: false) |
-| `recursive` | `boolean` |  | - | Whether to recursively import from containers/archives (default: true) |
+| `path` | `string` | ✓ | - | 要导入的绝对文件路径 |
+| `destinationFolder` | `string` |  | - | 项目目标文件夹（默认：根文件夹） |
+| `recursive` | `boolean` |  | `True` | 是否递归导入 |
+| `analyzeAfterImport` | `boolean` |  | `True` | 导入后是否运行自动分析 |
+| `enableVersionControl` | `boolean` |  | `True` | 是否自动添加到版本控制 |
 
 ---
 
 ## 31. `capture-reva-debug-info`
 
-**Capture ReVa Debug Information** (捕获ReVa调试信息)
+**Capture ReVa Debug Information**（捕获 ReVa 调试信息）
 
-Creates a zip file containing ReVa debug information for troubleshooting issues. Includes system info, Ghidra config, ReVa settings, MCP server status, open programs, and logs.
+创建包含 ReVa 调试信息的 zip 文件用于故障排除
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `message` | `string` |  | - | Optional message describing the issue being debugged |
+| `message` | `string` |  | - | 描述问题的可选消息 |
 
 ---
 
 ## 32. `find-cross-references`
 
-**Find Cross References** (查找交叉引用)
+**Find Cross References**（查找交叉引用）
 
-Find all references to or from a memory location, symbol, or function. Returns incoming and/or outgoing references with optional decompilation context.
+查找指向或来自内存位置、符号或函数的所有引用
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `includeContext` | `boolean` |  | `False` | Include decompilation context snippets for code references |
-| `contextLines` | `integer` |  | `2` | Number of lines before and after to include in context snippets |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program to get references from |
-| `offset` | `integer` |  | `0` | Starting offset for pagination (0-based) |
-| `includeFlow` | `boolean` |  | `True` | Include flow references (calls, jumps, branches) |
-| `limit` | `integer` |  | `100` | Maximum number of references to return per direction |
-| `location` | `string` | ✓ | - | Address or symbol name to get references for (e.g., '0x00400123', 'main', 'FUN_00401000') |
-| `includeData` | `boolean` |  | `True` | Include data references (reads, writes) |
-| `direction` | `string` |  | `both` | Direction of references to retrieve: 'to' (incoming), 'from' (outgoing), or 'both' (default) |
+| `location` | `string` | ✓ | - | 地址或符号名 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `direction` | `string` |  | `both` | 引用方向：'to'（传入）、'from'（传出）或 'both' |
+| `includeFlow` | `boolean` |  | `True` | 是否包含流引用（调用、跳转、分支） |
+| `includeData` | `boolean` |  | `True` | 是否包含数据引用（读、写） |
+| `includeContext` | `boolean` |  | `False` | 是否包含反编译上下文片段 |
+| `contextLines` | `integer` |  | `2` | 上下文片段的前后行数 |
+| `limit` | `integer` |  | `100` | 每个方向返回的最大引用数 |
 
 ---
 
 ## 33. `get-data-type-archives`
 
-**Get Data Type Archives** (获取数据类型归档)
+**Get Data Type Archives**（获取数据类型归档）
 
-Get data type archives for a specific program
+获取特定程序的数据类型归档
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to get data type archives for |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
 
 ---
 
 ## 34. `get-data-types`
 
-**Get Data Types** (获取数据类型)
+**Get Data Types**（获取数据类型）
 
-Get data types from a data type archive
+从数据类型归档获取数据类型
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `startIndex` | `integer` |  | `0` | Starting index for pagination (0-based) |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to get data types from |
-| `archiveName` | `string` | ✓ | - | Name of the data type archive |
-| `categoryPath` | `string` |  | `/` | Path to category to list data types from (e.g., '/Structure'). Use '/' for root category. |
-| `maxCount` | `integer` |  | `100` | Maximum number of data types to return |
-| `includeSubcategories` | `boolean` |  | `False` | Whether to include data types from subcategories |
+| `archiveName` | `string` | ✓ | - | 数据类型归档名称 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `categoryPath` | `string` |  | `/` | 类别路径（如 '/Structure'） |
+| `startIndex` | `integer` |  | `0` | 分页起始索引 |
+| `maxCount` | `integer` |  | `100` | 返回的最大数据类型数 |
+| `includeSubcategories` | `boolean` |  | `False` | 是否包含子类别 |
 
 ---
 
 ## 35. `get-data-type-by-string`
 
-**Get Data Type by String** (通过字符串获取数据类型)
+**Get Data Type by String**（通过字符串获取数据类型）
 
-Get a data type by its string representation
+通过字符串表示获取数据类型
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to search for data types in |
-| `dataTypeString` | `string` | ✓ | - | String representation of the data type (e.g., 'char**', 'int[10]') |
-| `archiveName` | `string` |  | `` | Optional name of the data type archive to search in. If not provided, all archives will be searched. |
+| `dataTypeString` | `string` | ✓ | - | 数据类型的字符串表示（如 'char**'） |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `archiveName` | `string` |  | - | 数据类型归档名称（可选） |
 
 ---
 
 ## 36. `parse-c-structure`
 
-**Parse C Structure** (解析C结构体)
+**Parse C Structure**（解析 C 结构体）
 
-Parse and create or replace a structure from a C-style definition. If a structure with the same name already exists, it will be replaced with the new definition (fields are completely rebuilt). Use get-structure-info to see the current layout before modifying.
+从 C 风格定义解析并创建或替换结构体
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path of the program |
-| `cDefinition` | `string` | ✓ | - | C-style structure definition |
-| `category` | `string` |  | - | Category path (default: /) |
+| `cDefinition` | `string` | ✓ | - | C 风格结构体定义 |
+| `programPath` | `string` | ✓ | - | 程序路径 |
+| `category` | `string` |  | - | 类别路径（默认：/） |
 
 ---
 
 ## 37. `validate-c-structure`
 
-**Validate C Structure** (验证C结构体)
+**Validate C Structure**（验证 C 结构体）
 
-Validate C-style structure definition without creating it
+验证 C 风格结构体定义但不创建它
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `cDefinition` | `string` | ✓ | - | C-style structure definition to validate |
+| `cDefinition` | `string` | ✓ | - | 要验证的 C 风格结构体定义 |
 
 ---
 
 ## 38. `get-structure-info`
 
-**Get Structure Info** (获取结构体信息)
+**Get Structure Info**（获取结构体信息）
 
-Get detailed information about a structure or union, including a C representation of its layout
+获取结构体或联合体的详细信息，包括其布局的 C 表示
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path of the program |
-| `structureName` | `string` | ✓ | - | Name of the structure |
+| `structureName` | `string` | ✓ | - | 结构体名称 |
+| `programPath` | `string` | ✓ | - | 程序路径 |
 
 ---
 
 ## 39. `list-structures`
 
-**List Structures** (列出结构体)
+**List Structures**（列出结构体）
 
-List structures and unions in a program with optional filtering and pagination
+列出程序中的结构体和联合体
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `startIndex` | `integer` |  | `0` | Starting index for pagination (0-based) |
-| `programPath` | `string` | ✓ | - | Path of the program |
-| `includeBuiltIn` | `boolean` |  | - | Include built-in types (default: false) |
-| `category` | `string` |  | - | Filter by category path |
-| `nameFilter` | `string` |  | - | Filter by name (substring match) |
-| `maxCount` | `integer` |  | `100` | Maximum number of structures to return |
+| `programPath` | `string` | ✓ | - | 程序路径 |
+| `startIndex` | `integer` |  | `0` | 分页起始索引 |
+| `maxCount` | `integer` |  | `100` | 返回的最大结构体数 |
+| `category` | `string` |  | - | 按类别路径过滤 |
+| `nameFilter` | `string` |  | - | 按名称过滤（子串匹配） |
+| `includeBuiltIn` | `boolean` |  | `False` | 是否包含内置类型 |
 
 ---
 
 ## 40. `apply-structure`
 
-**Apply Structure** (应用结构体)
+**Apply Structure**（应用结构体）
 
-Apply a structure at a specific address
+在指定地址应用结构体
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `clearExisting` | `boolean` |  | - | Clear existing data |
-| `programPath` | `string` | ✓ | - | Path of the program |
-| `structureName` | `string` | ✓ | - | Name of the structure |
-| `addressOrSymbol` | `string` | ✓ | - | Address or symbol name to apply structure |
+| `structureName` | `string` | ✓ | - | 结构体名称 |
+| `programPath` | `string` | ✓ | - | 程序路径 |
+| `addressOrSymbol` | `string` | ✓ | - | 地址或符号名 |
+| `clearExisting` | `boolean` |  | `False` | 是否清除现有数据 |
 
 ---
 
 ## 41. `delete-structure`
 
-**Delete Structure** (删除结构体)
+**Delete Structure**（删除结构体）
 
-Delete a structure from the program. Checks for references (function signatures, variables, memory) before deletion. Use force=true to delete anyway despite references.
+从程序中删除结构体
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path of the program |
-| `structureName` | `string` | ✓ | - | Name of the structure to delete |
-| `force` | `boolean` |  | - | Force deletion even if structure is referenced (default: false) |
+| `structureName` | `string` | ✓ | - | 要删除的结构体名称 |
+| `programPath` | `string` | ✓ | - | 程序路径 |
+| `force` | `boolean` |  | `False` | 即使被引用也强制删除 |
 
 ---
 
 ## 42. `parse-c-header`
 
-**Parse C Header** (解析C头文件)
+**Parse C Header**（解析 C 头文件）
 
-Parse an entire C header file and create all structures
+解析整个 C 头文件并创建所有结构体
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `headerContent` | `string` | ✓ | - | C header file content |
-| `programPath` | `string` | ✓ | - | Path of the program |
-| `category` | `string` |  | - | Category path (default: /) |
+| `headerContent` | `string` | ✓ | - | C 头文件内容 |
+| `programPath` | `string` | ✓ | - | 程序路径 |
+| `category` | `string` |  | - | 类别路径（默认：/） |
 
 ---
 
 ## 43. `set-comment`
 
-**Set Comment** (设置注释)
+**Set Comment**（设置注释）
 
-Set or update a comment at a specific address. Use this to keep notes or annotations for yourself and the human.
+在指定地址设置或更新注释
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path to the program in the Ghidra Project |
-| `addressOrSymbol` | `string` | ✓ | - | Address or symbol name where to set the comment |
-| `commentType` | `string` |  | `eol` | Type of comment: 'pre', 'eol', 'post', 'plate', or 'repeatable' |
-| `comment` | `string` | ✓ | - | The comment text to set |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `addressOrSymbol` | `string` | ✓ | - | 地址或符号名 |
+| `commentType` | `string` |  | `eol` | 注释类型：'pre'、'eol'、'post'、'plate' 或 'repeatable' |
+| `comment` | `string` | ✓ | - | 注释文本 |
 
 ---
 
 ## 44. `get-comments`
 
-**Get Comments** (获取注释)
+**Get Comments**（获取注释）
 
-Get comments at a specific address or within an address range
+获取指定地址或地址范围内的注释
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path to the program in the Ghidra Project |
-| `addressOrSymbol` | `string` |  | - | Address or symbol name to get comments from (optional if using addressRange) |
-| `addressRange` | `object` |  | - | Address range to get comments from (optional if using address) |
-| `commentTypes` | `array` |  | - | Types of comments to retrieve (optional, defaults to all types) |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `addressOrSymbol` | `string` |  | - | 地址或符号名 |
+| `addressRange` | `object` |  | - | 地址范围 |
+| `commentTypes` | `array` |  | - | 要获取的注释类型 |
 
 ---
 
 ## 45. `remove-comment`
 
-**Remove Comment** (删除注释)
+**Remove Comment**（删除注释）
 
-Remove a specific comment at an address
+删除指定地址的特定注释
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path to the program in the Ghidra Project |
-| `addressOrSymbol` | `string` | ✓ | - | Address or symbol name where to remove the comment |
-| `commentType` | `string` | ✓ | - | Type of comment to remove: 'pre', 'eol', 'post', 'plate', or 'repeatable' |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `addressOrSymbol` | `string` | ✓ | - | 地址或符号名 |
+| `commentType` | `string` | ✓ | - | 要删除的注释类型 |
 
 ---
 
 ## 46. `search-comments`
 
-**Search Comments** (搜索注释)
+**Search Comments**（搜索注释）
 
-Search for comments containing specific text
+搜索包含特定文本的注释
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `searchText` | `string` | ✓ | - | Text to search for in comments |
-| `programPath` | `string` | ✓ | - | Path to the program in the Ghidra Project |
-| `caseSensitive` | `boolean` |  | `False` | Whether search is case sensitive |
-| `maxResults` | `integer` |  | `100` | Maximum number of results to return |
-| `commentTypes` | `array` |  | - | Types of comments to search (optional, defaults to all types) |
+| `searchText` | `string` | ✓ | - | 要搜索的文本 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `caseSensitive` | `boolean` |  | `False` | 是否区分大小写 |
+| `maxResults` | `integer` |  | `100` | 返回的最大结果数 |
+| `commentTypes` | `array` |  | - | 要搜索的注释类型 |
 
 ---
 
 ## 47. `set-bookmark`
 
-**Set Bookmark** (设置书签)
+**Set Bookmark**（设置书签）
 
-Set or update a bookmark at a specific address. Used to keep track of important locations in the program.
+在指定地址设置或更新书签，用于跟踪重要位置
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path to the program in the Ghidra Project |
-| `addressOrSymbol` | `string` | ✓ | - | Address or symbol name where to set the bookmark |
-| `comment` | `string` | ✓ | - | Bookmark comment text |
-| `type` | `string` | ✓ | - | Bookmark type (e.g. 'Note', 'Warning', 'TODO', 'Bug', 'Analysis') |
-| `category` | `string` |  | - | Bookmark category for organizing bookmarks (optional) |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `addressOrSymbol` | `string` | ✓ | - | 地址或符号名 |
+| `comment` | `string` | ✓ | - | 书签注释文本 |
+| `type` | `string` | ✓ | - | 书签类型（如 'Note'、'Warning'、'TODO'、'Bug'） |
+| `category` | `string` |  | - | 书签类别 |
 
 ---
 
 ## 48. `get-bookmarks`
 
-**Get Bookmarks** (获取书签)
+**Get Bookmarks**（获取书签）
 
-Get bookmarks at a specific address or within an address range
+获取指定地址或地址范围内的书签
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path to the program in the Ghidra Project |
-| `maxResults` | `integer` |  | `200` | Maximum number of bookmarks to return (default 200) |
-| `addressOrSymbol` | `string` |  | - | Address or symbol name to get bookmarks from (optional if using addressRange) |
-| `addressRange` | `object` |  | - | Address range to get bookmarks from (optional if using address) |
-| `type` | `string` |  | - | Filter by bookmark type (optional) |
-| `category` | `string` |  | - | Filter by bookmark category (optional) |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `addressOrSymbol` | `string` |  | - | 地址或符号名 |
+| `addressRange` | `object` |  | - | 地址范围 |
+| `type` | `string` |  | - | 按书签类型过滤 |
+| `category` | `string` |  | - | 按书签类别过滤 |
+| `maxResults` | `integer` |  | `200` | 返回的最大书签数 |
 
 ---
 
 ## 49. `remove-bookmark`
 
-**Remove Bookmark** (删除书签)
+**Remove Bookmark**（删除书签）
 
-Remove a specific bookmark
+删除特定书签
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path to the program in the Ghidra Project |
-| `addressOrSymbol` | `string` | ✓ | - | Address or symbol name of the bookmark |
-| `type` | `string` | ✓ | - | Bookmark type |
-| `category` | `string` |  | - | Bookmark category (optional) |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `addressOrSymbol` | `string` | ✓ | - | 地址或符号名 |
+| `type` | `string` | ✓ | - | 书签类型 |
+| `category` | `string` |  | - | 书签类别 |
 
 ---
 
 ## 50. `search-bookmarks`
 
-**Search Bookmarks** (搜索书签)
+**Search Bookmarks**（搜索书签）
 
-Search for bookmarks by text, type, category, or address range
+按文本、类型、类别或地址范围搜索书签
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `searchText` | `string` |  | - | Text to search for in bookmark comments (optional) |
-| `types` | `array` |  | - | Filter by bookmark types (optional) |
-| `programPath` | `string` | ✓ | - | Path to the program in the Ghidra Project |
-| `maxResults` | `integer` |  | `100` | Maximum number of results to return |
-| `addressRange` | `object` |  | - | Limit search to address range (optional) |
-| `categories` | `array` |  | - | Filter by bookmark categories (optional) |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `searchText` | `string` |  | - | 要在注释中搜索的文本 |
+| `types` | `array` |  | - | 按书签类型过滤 |
+| `categories` | `array` |  | - | 按书签类别过滤 |
+| `addressRange` | `object` |  | - | 地址范围 |
+| `maxResults` | `integer` |  | `100` | 返回的最大结果数 |
 
 ---
 
 ## 51. `list-bookmark-categories`
 
-**List Bookmark Categories** (列出书签类别)
+**List Bookmark Categories**（列出书签类别）
 
-List all categories for a given bookmark type
+列出给定书签类型的所有类别
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path to the program in the Ghidra Project |
-| `type` | `string` | ✓ | - | Bookmark type to get categories for |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `type` | `string` | ✓ | - | 书签类型 |
 
 ---
 
 ## 52. `list-imports`
 
-**List Imports** (列出导入函数)
+**List Imports**（列出导入函数）
 
-List all imported functions from external libraries. Useful for understanding what external APIs a binary uses.
+列出从外部库导入的所有函数
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `startIndex` | `integer` |  | `0` | Starting index for pagination (default: 0) |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `groupByLibrary` | `boolean` |  | `True` | Group imports by library name (default: true) |
-| `maxResults` | `integer` |  | `500` | Maximum number of imports to return (default: 500) |
-| `libraryFilter` | `string` |  | - | Optional: filter by library name (case-insensitive partial match) |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `startIndex` | `integer` |  | `0` | 分页起始索引 |
+| `maxResults` | `integer` |  | `500` | 返回的最大导入数 |
+| `groupByLibrary` | `boolean` |  | `True` | 是否按库名分组 |
+| `libraryFilter` | `string` |  | - | 按库名过滤（不区分大小写） |
 
 ---
 
 ## 53. `list-exports`
 
-**List Exports** (列出导出符号)
+**List Exports**（列出导出符号）
 
-List all exported symbols from the binary. Shows functions and data that the binary exports for use by other modules.
+列出二进制文件导出的所有符号
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `startIndex` | `integer` |  | `0` | Starting index for pagination (default: 0) |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `maxResults` | `integer` |  | `500` | Maximum number of exports to return (default: 500) |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `startIndex` | `integer` |  | `0` | 分页起始索引 |
+| `maxResults` | `integer` |  | `500` | 返回的最大导出数 |
 
 ---
 
 ## 54. `find-import-references`
 
-**Find Import References** (查找导入引用)
+**Find Import References**（查找导入引用）
 
-Find all locations where a specific imported function is called. Also finds references through thunks (IAT stubs).
+查找调用特定导入函数的所有位置
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `libraryName` | `string` |  | - | Optional: specific library name to narrow search (case-insensitive) |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `maxResults` | `integer` |  | `100` | Maximum number of references to return (default: 100) |
-| `importName` | `string` | ✓ | - | Name of the imported function to find references for (case-insensitive) |
+| `importName` | `string` | ✓ | - | 导入函数名（不区分大小写） |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `libraryName` | `string` |  | - | 库名（可选，用于缩小范围） |
+| `maxResults` | `integer` |  | `100` | 返回的最大结果数 |
 
 ---
 
 ## 55. `resolve-thunk`
 
-**Resolve Thunk** (解析Thunk)
+**Resolve Thunk**（解析 Thunk）
 
-Follow a thunk chain to find the actual target function. Thunks are wrapper functions that jump to another location.
+跟踪 thunk 链找到实际目标函数
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `address` | `string` | ✓ | - | Address of the thunk or jump stub to resolve |
+| `address` | `string` | ✓ | - | Thunk 或跳转存根的地址 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
 
 ---
 
 ## 56. `trace-data-flow-backward`
 
-**Trace Data Flow Backward** (反向追踪数据流)
+**Trace Data Flow Backward**（反向追踪数据流）
 
-Trace where a value at an address comes from. Follows the data dependency chain backward to find origins (constants, parameters, memory loads, etc.).
+追踪地址处值的来源（常量、参数、内存加载等）
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `address` | `string` | ✓ | - | Address within a function to trace backward from |
+| `address` | `string` | ✓ | - | 要向后跟踪的函数内地址 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
 
 ---
 
 ## 57. `trace-data-flow-forward`
 
-**Trace Data Flow Forward** (正向追踪数据流)
+**Trace Data Flow Forward**（正向追踪数据流）
 
-Trace where a value at an address flows to. Follows the data dependency chain forward to find uses (stores, function calls, returns, etc.).
+追踪地址处值的去向（存储、函数调用、返回等）
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `address` | `string` | ✓ | - | Address within a function to trace forward from |
+| `address` | `string` | ✓ | - | 要向前跟踪的函数内地址 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
 
 ---
 
 ## 58. `find-variable-accesses`
 
-**Find Variable Accesses** (查找变量访问)
+**Find Variable Accesses**（查找变量访问）
 
-Find all reads and writes to a variable within a function. Useful for understanding how a variable is used throughout a function.
+查找函数内变量的所有读写操作
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `variableName` | `string` | ✓ | - | Name of the variable to find accesses for |
-| `functionAddress` | `string` | ✓ | - | Address of the function to analyze |
+| `variableName` | `string` | ✓ | - | 变量名 |
+| `functionAddress` | `string` | ✓ | - | 函数地址 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
 
 ---
 
 ## 59. `get-call-graph`
 
-**Get Call Graph** (获取调用图)
+**Get Call Graph**（获取调用图）
 
-Get the call graph around a function, showing both callers (functions that call this one) and callees (functions this one calls) up to the specified depth. Useful for understanding a function's context in the overall program flow.
+获取函数周围的调用图，显示调用者和被调用者
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `depth` | `integer` |  | `1` | How many levels of callers/callees to include (default: 1, max: 10) |
-| `functionAddress` | `string` | ✓ | - | Address or name of the function to analyze |
+| `functionAddress` | `string` | ✓ | - | 函数地址或名称 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `depth` | `integer` |  | `1` | 包含的层数（默认：1，最大：10） |
 
 ---
 
 ## 60. `get-call-tree`
 
-**Get Call Tree** (获取调用树)
+**Get Call Tree**（获取调用树）
 
-Get a hierarchical call tree starting from a function. Can traverse upward (callers - who calls this function) or downward (callees - what functions this calls). Detects and marks cycles.
+获取从函数开始的层次调用树
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `maxDepth` | `integer` |  | `3` | Maximum depth to traverse (default: 3, max: 10) |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `functionAddress` | `string` | ✓ | - | Address or name of the function to analyze |
-| `direction` | `string` |  | `callees` | Direction to traverse: 'callers' (who calls this) or 'callees' (what this calls) |
+| `functionAddress` | `string` | ✓ | - | 函数地址或名称 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `direction` | `string` |  | `callees` | 遍历方向：'callers'（向上）或 'callees'（向下） |
+| `maxDepth` | `integer` |  | `3` | 遍历的最大深度（默认：3，最大：10） |
 
 ---
 
 ## 61. `find-common-callers`
 
-**Find Common Callers** (查找公共调用者)
+**Find Common Callers**（查找公共调用者）
 
-Find functions that call ALL of the specified target functions. Useful for finding dispatch points, main loops, or common entry points that orchestrate multiple related functions.
+查找调用所有指定目标函数的公共函数
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `functionAddresses` | `array` | ✓ | - | List of function addresses or names to find common callers for |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
+| `functionAddresses` | `array` | ✓ | - | 函数地址或名称列表 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
 
 ---
 
 ## 62. `find-constant-uses`
 
-**Find Constant Uses** (查找常量使用)
+**Find Constant Uses**（查找常量使用）
 
-Find all locations where a specific constant value is used as an immediate operand in instructions. Useful for finding magic numbers, error codes, buffer sizes, or other significant values.
+查找使用特定常量值的所有位置
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `maxResults` | `integer` |  | `500` | Maximum number of results to return (default: 500) |
-| `value` | `string` | ✓ | - | The constant value to search for. Supports decimal (123), hex (0x7b), negative (-1), or named consta |
+| `value` | `string` | ✓ | - | 要搜索的常量值（支持十进制、十六进制、负数） |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `maxResults` | `integer` |  | `500` | 返回的最大结果数 |
 
 ---
 
 ## 63. `find-constants-in-range`
 
-**Find Constants in Range** (查找范围内的常量)
+**Find Constants in Range**（查找范围内的常量）
 
-Find all constant values within a specified range. Useful for finding error codes (e.g., 400-599 for HTTP errors), enum values, or constants that fall within expected bounds.
+查找指定范围内的所有常量值
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `minValue` | `string` | ✓ | - | Minimum value (inclusive). Supports decimal or hex (0x) format. |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `maxValue` | `string` | ✓ | - | Maximum value (inclusive). Supports decimal or hex (0x) format. |
-| `maxResults` | `integer` |  | `500` | Maximum number of results to return (default: 500) |
+| `minValue` | `string` | ✓ | - | 最小值（支持十进制或十六进制） |
+| `maxValue` | `string` | ✓ | - | 最大值（支持十进制或十六进制） |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `maxResults` | `integer` |  | `500` | 返回的最大结果数 |
 
 ---
 
 ## 64. `list-common-constants`
 
-**List Common Constants** (列出常用常量)
+**List Common Constants**（列出常用常量）
 
-Find the most frequently used constant values in the program. Helps identify important magic numbers, sizes, flags, or other significant values. By default filters out small values (0-255) which are often noise.
+查找程序中最常用的常量值
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `minValue` | `string` |  | - | Optional minimum value to consider (filters out small constants) |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `includeSmallValues` | `boolean` |  | `False` | Include small values (0-255) which are often noise (default: false) |
-| `topN` | `integer` |  | `50` | Number of most common constants to return (default: 50) |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `topN` | `integer` |  | `50` | 返回的最常用常量数 |
+| `minValue` | `string` |  | - | 最小值（可选，用于过滤小常量） |
+| `includeSmallValues` | `boolean` |  | `False` | 是否包含小值（0-255） |
 
 ---
 
 ## 65. `analyze-vtable`
 
-**Analyze Vtable** (分析虚函数表)
+**Analyze Vtable**（分析虚函数表）
 
-Analyze a virtual function table (vtable) at the given address. Returns the list of function pointers with their slot indices and offsets. Useful for understanding C++ class hierarchies and virtual method dispatch.
+分析指定地址的虚函数表（vtable）
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `vtableAddress` | `string` | ✓ | - | Address of the vtable to analyze |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `maxEntries` | `integer` |  | `200` | Maximum number of vtable entries to read (default: 200) |
+| `vtableAddress` | `string` | ✓ | - | 虚函数表地址 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `maxEntries` | `integer` |  | `200` | 读取的最大条目数 |
 
 ---
 
 ## 66. `find-vtable-callers`
 
-**Find Vtable Callers** (查找虚函数表调用者)
+**Find Vtable Callers**（查找虚函数表调用者）
 
-Find all indirect calls that could be calling a function through its vtable slot. Given a function that appears in a vtable, finds all indirect call instructions with the matching offset. If vtableAddress is not provided, will first search for vtables containing the function. Essential for finding callers of virtual methods. Note: Offset extraction patterns are optimized for x86/x64 instruction formats.
+查找可能通过虚函数表槽调用函数的所有间接调用
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `vtableAddress` | `string` |  | - | Address of the vtable containing the function (optional - will search if not provided) |
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `maxResults` | `integer` |  | `500` | Maximum number of results to return (default: 500) |
-| `functionAddress` | `string` | ✓ | - | Address or name of the function that is called via vtable |
+| `functionAddress` | `string` | ✓ | - | 通过虚函数表调用的函数地址或名称 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
+| `vtableAddress` | `string` |  | - | 虚函数表地址（可选） |
+| `maxResults` | `integer` |  | `500` | 返回的最大结果数 |
 
 ---
 
 ## 67. `find-vtables-containing-function`
 
-**Find Vtables Containing Function** (查找包含函数的虚函数表)
+**Find Vtables Containing Function**（查找包含函数的虚函数表）
 
-Find all vtables that contain a pointer to the given function. Returns the vtable addresses and slot indices where the function appears. Useful for discovering which classes implement a virtual method.
+查找包含指向给定函数的指针的所有虚函数表
 
 | 参数名 | 类型 | 必填 | 默认值 | 说明 |
 |--------|------|------|--------|------|
-| `programPath` | `string` | ✓ | - | Path in the Ghidra Project to the program |
-| `functionAddress` | `string` | ✓ | - | Address or name of the function to search for in vtables |
+| `functionAddress` | `string` | ✓ | - | 要搜索的函数地址或名称 |
+| `programPath` | `string` | ✓ | - | Ghidra 项目中程序的路径 |
 
 ---
-
