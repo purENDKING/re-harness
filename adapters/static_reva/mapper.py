@@ -36,6 +36,31 @@ def _parse_json_content(result: dict[str, Any]) -> dict[str, Any]:
     except json.JSONDecodeError:
         return {"raw_text": text}
 
+# ========================================
+# 发现映射
+# ========================================
+
+
+def map_functions_list(result: dict[str, Any]) -> list[dict[str, Any]]:
+    data = _parse_json_content(result)
+    return
+
+
+def map_function_count(self, result: dict[str, Any]) -> int:
+    data = _parse_json_content(result)
+    return
+
+
+def map_structures_list(self, result: dict[str, Any]) -> list[dict[str, Any]]:
+    data = _parse_json_content(result)
+    return
+
+
+def map_structure_info(self, result: dict[str, Any]) -> dict[str, Any]:
+    data = _parse_json_content(result)
+    return
+
+
 
 # ========================================
 # 上下文获取映射
